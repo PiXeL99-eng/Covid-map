@@ -1,0 +1,29 @@
+{
+  "name": "covid-map",
+  "version": "1.0.0",
+  "description": "Covid mapping web-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PiXeL99-eng/Covid-map.git"
+  },
+  "author": "Sayantan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PiXeL99-eng/Covid-map/issues"
+  },
+  "homepage": "https://github.com/PiXeL99-eng/Covid-map#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "http-proxy": "^1.18.1",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.2.10",
+    "nodemon": "^2.0.19"
+  }
+}

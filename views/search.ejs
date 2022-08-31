@@ -1,0 +1,50 @@
+<%- include('search_header') -%>
+
+<div class="nav">
+    <%- include('navbar') -%>
+</div>
+
+<div class="search">
+    <form class="d-flex" method="POST" >
+        <input class="form-control me-2 input"  name="search" placeholder="Search by PIN code" aria-label="Search">
+        <button class="btn btn-outline-success button" type="submit">Search</button>
+    </form>
+</div>
+
+<div class="table">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">sl.no</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Fee</th>
+                <th scope="col">Vaccine</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        <% let i = 0; %>
+        <% array.forEach(element => {  %>
+        <%     i++; %>
+            <tr>
+                <th><%= i %></th>
+                <td><%= element.name  %></td>
+                <td><%= element.address  %></td>
+                <td><%= element.fee  %></td>
+                <td><%= element.vaccine  %></td>
+                <td><%= element.from  %></td>
+                <td><%= element.to  %></td>
+            </tr>
+        <%  });    %> 
+                
+
+
+        </tbody>
+
+    </table>
+</div>
+
+<%- include('footer') -%>

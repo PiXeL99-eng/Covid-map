@@ -1,0 +1,24 @@
+<%- include('index_header') -%>
+
+<div class="nav">
+    <%- include('navbar') -%>
+</div>
+
+<div id='map' style='width: 100vw; height: 98vh;'></div>
+
+<div class="legend">
+    <h3>Confirmed Cases</h3>
+
+    <div><span id="d1" class="dot"></span>More than 11400</div>
+    <div><span id="d2" class="dot"></span>11400 - 7800</div>
+    <div><span id="d3" class="dot"></span>7800 - 3500</div>
+    <div><span id="d4" class="dot"></span>3500 - 1000</div>
+    <div><span id="d5" class="dot"></span>1000 - 400</div>
+    <div><span id="d6" class="dot"></span>400 - 280</div>
+    <div><span id="d7" class="dot"></span>280 - 110</div>
+    <div><span id="d8" class="dot"></span>110 - 45</div>
+    <div><span id="d9" class="dot"></span>45 - 0</div>
+        
+</div>
+<script src="/public/js/map.js"></script>
+<%- include('footer') -%>

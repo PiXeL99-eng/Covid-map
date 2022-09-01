@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
-const port = 3000
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 const path = require('path')
 
 //because fetch is not defined in Node.js, we have to npm i node-fetch

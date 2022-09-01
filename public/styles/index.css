@@ -1,3 +1,8 @@
+body{
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
 .legend {
     display: flex;
     position: absolute;
@@ -44,9 +49,6 @@ a{
 .nav-link{
     color: black;
     font-family: cursive;
-}
-html{
-    width: 98vw;
 }
 .dot {
     height: 25px;

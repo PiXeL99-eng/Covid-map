@@ -58,9 +58,12 @@ fetch('https://data.covid19india.org/v4/min/data.min.json')
   })
   .then((content) => {
 
+    //content is an object of all the info returned
     for (let state in content){
       
       let dist = content[state].districts
+
+      // dist is an district object that contains all the districts relating to that state
 
       for (let dist_name in dist){
 
@@ -74,88 +77,88 @@ fetch('https://data.covid19india.org/v4/min/data.min.json')
           fetch(`https://raw.githubusercontent.com/PiXeL99-eng/States-and-district-coordinates-data/master/data.json`).then((response) => {return response.json()})
           .then((state_data) => {
 
-            if (dist_name in state_data[state].districts){
+                if (dist_name in state_data[state].districts)
+                {
+                    let details = state_data[state].districts[dist_name]
+                    let longitude = details[0]
+                    let latitude = details[1]
 
-          let details = state_data[state].districts[dist_name]
-          let longitude = details[0]
-          let latitude = details[1]
+                    let data = dist[dist_name].total
+            
+                    map.on('load', function () {
+            
+                      var da = data.confirmed;
+            
+                      if (da > 11400) {
+                        var colour = "#5d3fd3";
+                      }
+                      else if (da > 7800) {
+                        var colour = "#00ff00";
+                      }
+                      else if (da > 3500) {
+                        var colour = "#bdb742";
+                      }
+                      else if (da > 1000) {
+                        var colour = "#2b9401";
+                      }
+                      else if (da > 400) {
+                        var colour = "#c42929";
+                      }
+                      else if (da > 280) {
+                        var colour = "#2ae860";
+                      }
+                      else if (da > 110) {
+                        var colour = "#2ae8b8";
+                      }
+                      else if (da > 45) {
+                        var colour = "#10a39c";
+                      }
+                      else {
+                        var colour = "#ffc0cb";
+                      }
 
-          let data = dist[dist_name].total
-  
-          map.on('load', function () {
-  
-            var da = data.confirmed;
-  
-            if (da > 11400) {
-              var colour = "#5d3fd3";
-            }
-            else if (da > 7800) {
-              var colour = "#00ff00";
-            }
-            else if (da > 3500) {
-              var colour = "#bdb742";
-            }
-            else if (da > 1000) {
-              var colour = "#2b9401";
-            }
-            else if (da > 400) {
-              var colour = "#c42929";
-            }
-            else if (da > 280) {
-              var colour = "#2ae860";
-            }
-            else if (da > 110) {
-              var colour = "#2ae8b8";
-            }
-            else if (da > 45) {
-              var colour = "#10a39c";
-            }
-            else {
-              var colour = "#ffc0cb";
-            }
+                      // this part of code was used to form the data collection of state and district coordinates
+                      // if (!(state in store)){
+                      //   store = {...store, 
+                      //             [`${state}`]: {"name": `${code_to_state_name[state]}`,
+                      //                            "districts": {
+                      //                                           [`${dist_name}`]: [`${longitude}`, `${latitude}`]
+                      //                                         }
+                      //                           }
+                      //           }
+                      // }
+                      // else{
 
-            // this part of code was used to form the data collection of state and district coordinates
-            // if (!(state in store)){
-            //   store = {...store, 
-            //             [`${state}`]: {"name": `${code_to_state_name[state]}`,
-            //                            "districts": {
-            //                                           [`${dist_name}`]: [`${longitude}`, `${latitude}`]
-            //                                         }
-            //                           }
-            //           }
-            // }
-            // else{
+                      //   let d_store = (store[`${state}`])["districts"]
 
-            //   let d_store = (store[`${state}`])["districts"]
+                      //   store = {...store,
 
-            //   store = {...store,
-
-            //           [`${state}`]: {"name": `${code_to_state_name[state]}`,
-            //                           "districts": {
-            //                                           ...d_store,
-            //                                           [`${dist_name}`]: [`${longitude}`, `${latitude}`]
-            //                                        }
-            //                         }
+                      //           [`${state}`]: {"name": `${code_to_state_name[state]}`,
+                      //                           "districts": {
+                      //                                           ...d_store,
+                      //                                           [`${dist_name}`]: [`${longitude}`, `${latitude}`]
+                      //                                        }
+                      //                         }
 
 
-            //           }
-            // }
-  
-            marker = new mapboxgl.Marker({
-              color: colour,
-              draggable: false,
-              scale: 0.6
-  
-            }).setLngLat([longitude, latitude]).setPopup(new mapboxgl.Popup().setHTML(`<div>INFO</div><div><strong>State</strong>  :  ${state_data[state].name}</div>
-              <div><strong>District</strong>  :  ${dist_name}</div>
-              <div><strong>Confirmed</strong>  :  ${data.confirmed}</div>
-              <div><strong>Recovered</strong>  :  ${data.recovered}</div>
-              <div><strong>Active</strong>  :  ${data.deceased}</div>
-            `)).addTo(map);
-  
-          })
+                      //           }
+                      // }
+            
+                      marker = new mapboxgl.Marker({
+                        color: colour,
+                        draggable: false,
+                        scale: 0.6
+            
+                      }).setLngLat([longitude, latitude]).setPopup(new mapboxgl.Popup().setHTML(`<div>INFO</div><div><strong>State</strong>  :  ${state_data[state].name}</div>
+                        <div><strong>District</strong>  :  ${dist_name}</div>
+                        <div><strong>Confirmed</strong>  :  ${data.confirmed}</div>
+                        <div><strong>Recovered</strong>  :  ${data.recovered}</div>
+                        <div><strong>Active</strong>  :  ${data.deceased}</div>
+                      `)).addTo(map);
+            
+                    })
 
-        }
+              }
         })
 
       }

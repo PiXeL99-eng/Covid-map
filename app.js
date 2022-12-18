@@ -12,7 +12,7 @@ const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url
 //body-parser is required to utilize the request.body data from the HTML form input
 const bodyParser = require('body-parser')
 const multer = require('multer');
-const upload = multer();
+// const upload = multer();
 
 //set my view engine to Embedded JS
 app.set('view engine', 'ejs');
@@ -27,8 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 //form-urlencoded
 
-// for parsing multipart/form-data
-app.use(upload.array()); 
+// // for parsing multipart/form-data
+// app.use(upload.array()); 
 
 
 app.get('/', (req, res) => {
